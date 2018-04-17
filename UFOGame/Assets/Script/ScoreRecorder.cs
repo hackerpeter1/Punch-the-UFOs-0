@@ -28,6 +28,7 @@ public class ScoreRecorder : MonoBehaviour
         scoreTable.Add(Color.yellow, 1);
         scoreTable.Add(Color.red, 2);
         scoreTable.Add(Color.black, 4);
+        scoreTable.Add(Color.blue, 8);
     }
 
     public void Record(GameObject disk)

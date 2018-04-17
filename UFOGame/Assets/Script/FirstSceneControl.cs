@@ -38,7 +38,7 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
      * currentRound是用来保存当前是那一回合
      */
 
-    private int currentRound = -1;
+    private static int currentRound = -1;
 
     /**
      * round是用来保存总共有多少回合，这里是3，
@@ -99,8 +99,6 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
         {
             time += Time.deltaTime;
         }
-
-
     }
 
     private void NextRound()
@@ -112,7 +110,6 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
         }
 
         actionManager.StartThrow(diskQueue);
-
     }
 
     void ThrowDisk()
@@ -129,7 +126,6 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
             float y = UnityEngine.Random.Range(0f, 4f);
             position = new Vector3(-disk.GetComponent<DiskData>().direction.x * 7, y, 0);
             disk.transform.position = position;
-
             disk.SetActive(true);
         }
 
@@ -147,7 +143,6 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
     {
         GUI.color = Color.red;
         GUI.Label(new Rect(700, 300, 400, 400), "GAMEOVER");
-
     }
 
     public int GetScore()
@@ -187,5 +182,9 @@ public class FirstSceneControl : MonoBehaviour, ISceneControl, IUserAction
             }
 
         }
+    }
+    public static int getCurrentRount()
+    {
+        return currentRound;
     }
 }

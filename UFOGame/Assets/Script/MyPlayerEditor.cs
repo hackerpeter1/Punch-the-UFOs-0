@@ -27,11 +27,11 @@ public class MyPlayerEditor : Editor
         // Update the serializedProperty - always do this in the beginning of OnInspectorGUI.
         serializedObject.Update();
 
-        EditorGUILayout.IntSlider(roundProp, 1, 3, new GUIContent("Upper Limit of Difficulty"));
+        EditorGUILayout.IntSlider(roundProp, 1, 5, new GUIContent("Upper Limit of Difficulty"));
 
         // Only show the armor progress bar if all the objects have the same armor value:
         if (!roundProp.hasMultipleDifferentValues)
-            ProgressBar(roundProp.intValue / 3f, "Upper Limit of Difficulty");
+            ProgressBar(roundProp.intValue / 5f, "Upper Limit of Difficulty");
 
         // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
         serializedObject.ApplyModifiedProperties();

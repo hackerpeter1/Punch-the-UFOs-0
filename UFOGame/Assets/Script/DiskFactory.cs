@@ -49,18 +49,16 @@ public class DiskFactory : MonoBehaviour
             newDisk.AddComponent<DiskData>();
         }
 
-        /**
-         * 以下几句代码是用来随机生成飞碟的颜色的，并根据回合数来限制飞碟可用的颜色
-         * 第一回合智能生成黄色的飞碟，第二回合飞碟可以有黄色和红色，第三回合黄，红
-         * 黑三种颜色的飞碟都可以出现，start变量是用来改变每一回合飞碟出现的概率的
-         */
-
         int start = 0;
         if (round == 1) start = 100;
         if (round == 2) start = 250;
+        if (round == 3) start = 300;
         int selectedColor = Random.Range(start, round * 499);
-
-        if (selectedColor > 500)
+        if(selectedColor > 800)
+        {
+            round = 3;
+        }
+        else if (selectedColor > 500)
         {
             round = 2;
         }
@@ -84,7 +82,7 @@ public class DiskFactory : MonoBehaviour
                 {
                     newDisk.GetComponent<DiskData>().color = Color.yellow;
                     newDisk.GetComponent<DiskData>().speed = 4.0f;
-                    float RanX = UnityEngine.Random.Range(-1f, 1f) < 0 ? -1 : 1;
+                    float RanX = UnityEngine.Random.Range(-2f, 2f) < 0 ? -1 : 1;
                     newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 0);
                     newDisk.GetComponent<Renderer>().material.color = Color.yellow;
                     break;
@@ -92,19 +90,28 @@ public class DiskFactory : MonoBehaviour
             case 1:
                 {
                     newDisk.GetComponent<DiskData>().color = Color.red;
-                    newDisk.GetComponent<DiskData>().speed = 6.0f;
-                    float RanX = UnityEngine.Random.Range(-1f, 1f) < 0 ? -1 : 1;
-                    newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 0);
+                    newDisk.GetComponent<DiskData>().speed = 5.5f;
+                    float RanX = UnityEngine.Random.Range(-2f, 2f) < 0 ? -1 : 1;
+                    newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 1);
                     newDisk.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 }
             case 2:
                 {
                     newDisk.GetComponent<DiskData>().color = Color.black;
-                    newDisk.GetComponent<DiskData>().speed = 8.0f;
-                    float RanX = UnityEngine.Random.Range(-1f, 1f) < 0 ? -1 : 1;
-                    newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 0);
+                    newDisk.GetComponent<DiskData>().speed = 7.0f;
+                    float RanX = UnityEngine.Random.Range(-2f, 2f) < 0 ? -1 : 1;
+                    newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 1);
                     newDisk.GetComponent<Renderer>().material.color = Color.black;
+                    break;
+                }
+            case 3:
+                {
+                    newDisk.GetComponent<DiskData>().color = Color.white;
+                    newDisk.GetComponent<DiskData>().speed = 10.0f;
+                    float RanX = UnityEngine.Random.Range(-1f, 1f) < 0 ? -1 : 1;
+                    newDisk.GetComponent<DiskData>().direction = new Vector3(RanX, 1, 1);
+                    newDisk.GetComponent<Renderer>().material.color = Color.blue;
                     break;
                 }
         }
@@ -132,5 +139,4 @@ public class DiskFactory : MonoBehaviour
             used.Remove(tmp);
         }
     }
-
 }
